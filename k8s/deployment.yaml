@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind:  Deployment
+metadata:
+  name: express
+  labels:
+    app: express
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: express
+  template:
+    metadata:
+      labels:
+        app: express
+    spec:
+      containers:
+        - name: express
+          image: ghcr.io/sonbkt303/k8s-express:latest
+          ports:
+            - containerPort: 3000
+          resources:
+            requests:
+              memory: "64Mi"
+              cpu: "50m"
+            limits:
+              memory: "128Mi"
+              cpu: "150m"
+
+--- 
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: express
+  labels:
+    app: express
+spec:
+  selector:
+    app: express
+  ports:
+    - protocol: TCP
+      port: 30080
+      targetPort: 30080
+  type: ClusterIP

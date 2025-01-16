@@ -1,0 +1,8 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: app
+      tags:
+        - ghcr.io/sonbkt303/k8s-express:latest
