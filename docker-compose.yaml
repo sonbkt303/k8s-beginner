@@ -6,3 +6,12 @@ services:
       target: app
       tags:
         - ghcr.io/sonbkt303/k8s-express:latest
+    restart: always
+    ports:
+      - "30080:30080"
+
+#     networks:
+#       - b8s-beginner
+
+# networks:
+#   b8s-beginner:
