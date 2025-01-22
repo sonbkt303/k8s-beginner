@@ -1,8 +1,10 @@
 apiVersion: apps/v1
-kind:  Deployment
+kind: Deployment
 metadata:
   name: express
+  namespace: default
   labels:
+    environment: development
     app: express
 spec:
   replicas: 1
@@ -18,7 +20,7 @@ spec:
         - name: express
           image: ghcr.io/sonbkt303/k8s-express:latest
           ports:
-            - containerPort: 3000
+            - containerPort: 30080
           resources:
             requests:
               memory: "64Mi"
@@ -27,13 +29,14 @@ spec:
               memory: "128Mi"
               cpu: "150m"
 
---- 
-
+---
 apiVersion: v1
 kind: Service
 metadata:
   name: express
+  namespace: default
   labels:
+    environment: development
     app: express
 spec:
   selector:
