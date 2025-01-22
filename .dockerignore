@@ -43,3 +43,5 @@ remove
 Thumbs.db
 
 node_modules/
+
+web/

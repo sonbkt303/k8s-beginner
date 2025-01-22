@@ -1,17 +1,40 @@
+version: "3.8"
 services:
-  app:
+  express:
     build:
       context: .
       dockerfile: Dockerfile
       target: app
       tags:
         - ghcr.io/sonbkt303/k8s-express:latest
+    depends_on:
+      mongodb:
+        condition: service_healthy
+        restart: true
     restart: always
     ports:
-      - "30080:30080"
+      - "${PORT}:${PORT}"
+    env_file:
+      - .env
 
-#     networks:
-#       - b8s-beginner
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+      target: production
+      tags:
+        - ghcr.io/sonbkt303/k8s-react:latest
+    ports:
+      - "3002:3000"
+    restart: always
 
+  mongodb:
+    image: mongo:latest
+    healthcheck:
+      test: ["CMD", "mongosh", "--eval", "db.stats()"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+    restart: always
 # networks:
 #   b8s-beginner:

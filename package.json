@@ -4,6 +4,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "build:image": "docker build -t k8s .",
     "start": "node app.js",
     "test:watch": "vitest",
     "test": "vitest run"
