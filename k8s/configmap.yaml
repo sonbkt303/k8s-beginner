@@ -8,4 +8,5 @@ metadata:
     app: express
 data:
   port: "30080"
-  database_url: mongo-service
+  database_url: mongodb-service
+  # database_url: "mongodb://root:example@mongo-service.default.svc.cluster.local:27017"
