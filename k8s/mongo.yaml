@@ -2,23 +2,23 @@ apiVersion: apps/v1
 kind: Deployment
 
 metadata:
-  name: mongo
+  name: mongodb-deployment
   # namespace: default
   labels:
-    environment: development
-    app: mongo
+    # environment: development
+    app: mongodb
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: mongo
+      app: mongodb
   template:
     metadata:
       labels:
-        app: mongo
+        app: mongodb
     spec:
       containers:
-        - name: mongo
+        - name: mongodb-example
           image: mongo:latest
           ports:
             - containerPort: 27017
@@ -48,11 +48,11 @@ metadata:
   name: mongo-service
   # namespace: default
   labels:
-    environment: development
+    # environment: development
     app: mongo-service
 spec:
   selector:
-    app: mongo
+    app: mongodb
   ports:
     - protocol: TCP
       port: 27017
