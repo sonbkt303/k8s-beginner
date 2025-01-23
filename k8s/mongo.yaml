@@ -45,11 +45,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mongo
+  name: mongo-service
   # namespace: default
   labels:
     environment: development
-    app: mongo
+    app: mongo-service
 spec:
   selector:
     app: mongo

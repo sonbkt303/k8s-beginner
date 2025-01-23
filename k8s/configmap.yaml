@@ -1,10 +1,11 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: express-config
-  namespace: default
+  name: k8s-config
+  # namespace: default
   labels:
     environment: development
     app: express
 data:
   port: "30080"
+  database_url: mongo-service
