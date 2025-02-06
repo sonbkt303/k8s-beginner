@@ -4,6 +4,7 @@ import express from "express"
 const app = express();
 
 app.get('/', (req, res) => {
+  console.log("hello world", new Date());
   res.send('Hello World!');
 });
 

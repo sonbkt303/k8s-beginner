@@ -8,7 +8,8 @@ COPY . .
 FROM base AS test
 RUN pnpm test
 
-
 FROM base AS app
 RUN pnpm install --prod --frozen-lockfile
+EXPOSE 30080
+
 CMD [ "npm", "start" ]
